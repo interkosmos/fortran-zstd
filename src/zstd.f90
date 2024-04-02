@@ -122,11 +122,11 @@ module zstd
 
         ! size_t ZSTD_compress(void *dst, size_t dstCapacity, const void *src, size_t srcSize, int compressionLevel)
         function zstd_compress(dst, dst_capacity, src, src_size, compression_level) bind(c, name='ZSTD_compress')
-            import :: c_char, c_int, c_size_t
+            import :: c_int, c_size_t
             implicit none
-            character(kind=c_char), intent(inout)     :: dst
+            type(*),                intent(inout)     :: dst
             integer(kind=c_size_t), intent(in), value :: dst_capacity
-            character(kind=c_char), intent(inout)     :: src
+            type(*),                intent(inout)     :: src
             integer(kind=c_size_t), intent(in), value :: src_size
             integer(kind=c_int),    intent(in), value :: compression_level
             integer(kind=c_size_t)                    :: zstd_compress
@@ -134,12 +134,12 @@ module zstd
 
         ! size_t ZSTD_compress2(ZSTD_CCtx *cctx, void *dst, size_t dstCapacity, const void *src, size_t srcSize)
         function zstd_compress2(c_ctx, dst, dst_capacity, src, src_size) bind(c, name='ZSTD_compress2')
-            import :: c_char, c_ptr, c_size_t
+            import :: c_ptr, c_size_t
             implicit none
             type(c_ptr),            intent(in), value :: c_ctx
-            character(kind=c_char), intent(inout)     :: dst
+            type(*),                intent(inout)     :: dst
             integer(kind=c_size_t), intent(in), value :: dst_capacity
-            character(kind=c_char), intent(inout)     :: src
+            type(*),                intent(inout)     :: src
             integer(kind=c_size_t), intent(in), value :: src_size
             integer(kind=c_size_t)                    :: zstd_compress2
         end function zstd_compress2
@@ -153,12 +153,12 @@ module zstd
 
         ! size_t ZSTD_compressCCtx(ZSTD_CCtx *cctx, void *dst, size_t dstCapacity, const void *src, size_t srcSize, int compressionLevel)
         function zstd_compress_c_ctx(c_ctx, dst, dst_capacity, src, src_size, compression_level) bind(c, name='ZSTD_compressCCtx')
-            import :: c_char, c_int, c_ptr, c_size_t
+            import :: c_int, c_ptr, c_size_t
             implicit none
             type(c_ptr),            intent(in), value :: c_ctx
-            character(kind=c_char), intent(inout)     :: dst
+            type(*),                intent(inout)     :: dst
             integer(kind=c_size_t), intent(in), value :: dst_capacity
-            character(kind=c_char), intent(inout)     :: src
+            type(*),                intent(inout)     :: src
             integer(kind=c_size_t), intent(in), value :: src_size
             integer(kind=c_int),    intent(in), value :: compression_level
             integer(kind=c_size_t)                    :: zstd_compress_c_ctx
@@ -261,32 +261,32 @@ module zstd
 
         ! size_t ZSTD_decompress(void *dst, size_t dstCapacity, const void *src, size_t compressedSize)
         function zstd_decompress(dst, dst_capacity, src, compressed_size) bind(c, name='ZSTD_decompress')
-            import :: c_char, c_size_t
+            import :: c_size_t
             implicit none
-            character(kind=c_char), intent(inout)     :: dst
+            type(*),                intent(inout)     :: dst
             integer(kind=c_size_t), intent(in), value :: dst_capacity
-            character(kind=c_char), intent(inout)     :: src
+            type(*),                intent(inout)     :: src
             integer(kind=c_size_t), intent(in), value :: compressed_size
             integer(kind=c_size_t)                    :: zstd_decompress
         end function zstd_decompress
 
         ! unsigned long long ZSTD_decompressBound(const void *src, size_t srcSize)
         function zstd_decompress_bound(src, src_size) bind(c, name='ZSTD_decompressBound')
-            import :: c_char, c_size_t, c_unsigned_long_long
+            import :: c_size_t, c_unsigned_long_long
             implicit none
-            character(kind=c_char), intent(inout)     :: src
+            type(*),                intent(inout)     :: src
             integer(kind=c_size_t), intent(in), value :: src_size
             integer(kind=c_unsigned_long_long)        :: zstd_decompress_bound
         end function zstd_decompress_bound
 
         ! size_t ZSTD_decompressDCtx(ZSTD_DCtx *dctx, void *dst, size_t dstCapacity, const void *src, size_t srcSize)
         function zstd_decompress_d_ctx(d_ctx, dst, dst_capacity, src, src_size) bind(c, name='ZSTD_decompressDCtx')
-            import :: c_char, c_ptr, c_size_t
+            import :: c_ptr, c_size_t
             implicit none
             type(c_ptr),            intent(in), value :: d_ctx
-            character(kind=c_char), intent(inout)     :: dst
+            type(*),                intent(inout)     :: dst
             integer(kind=c_size_t), intent(in), value :: dst_capacity
-            character(kind=c_char), intent(inout)     :: src
+            type(*),                intent(inout)     :: src
             integer(kind=c_size_t), intent(in), value :: src_size
             integer(kind=c_size_t)                    :: zstd_decompress_d_ctx
         end function zstd_decompress_d_ctx
@@ -328,18 +328,18 @@ module zstd
 
         ! unsigned long long ZSTD_findDecompressedSize(const void *src, size_t srcSize)
         function zstd_find_decompressed_size(src, src_size) bind(c, name='ZSTD_findDecompressedSize')
-            import :: c_char, c_size_t, c_unsigned_long_long
+            import :: c_size_t, c_unsigned_long_long
             implicit none
-            character(kind=c_char), intent(inout)     :: src
+            type(*),                intent(inout)     :: src
             integer(kind=c_size_t), intent(in), value :: src_size
             integer(kind=c_unsigned_long_long)        :: zstd_find_decompressed_size
         end function zstd_find_decompressed_size
 
         ! size_t ZSTD_findFrameCompressedSize(const void *src, size_t srcSize)
         function zstd_find_frame_compressed_size(src, src_size) bind(c, name='ZSTD_findFrameCompressedSize')
-            import :: c_char, c_size_t
+            import :: c_size_t
             implicit none
-            character(kind=c_char), intent(inout)     :: src
+            type(*),                intent(inout)     :: src
             integer(kind=c_size_t), intent(in), value :: src_size
             integer(kind=c_size_t)                    :: zstd_find_frame_compressed_size
         end function zstd_find_frame_compressed_size
@@ -389,9 +389,9 @@ module zstd
         ! unsigned long long ZSTD_getDecompressedSize(const void *src, size_t srcSize)
         function zstd_get_decompressed_size(src, src_size) bind(c, name='ZSTD_getDecompressedSize')
             !! Deprecated.
-            import :: c_char, c_size_t, c_unsigned_long_long
+            import :: c_size_t, c_unsigned_long_long
             implicit none
-            character(kind=c_char), intent(inout)     :: src
+            type(*),                intent(inout)     :: src
             integer(kind=c_size_t), intent(in), value :: src_size
             integer(kind=c_unsigned_long_long)        :: zstd_get_decompressed_size
         end function zstd_get_decompressed_size
@@ -407,9 +407,9 @@ module zstd
         ! unsigned long long ZSTD_getFrameContentSize(const void *src, size_t srcSize)
         function zstd_get_frame_content_size(src, src_size) bind(c, name='ZSTD_getFrameContentSize')
             !! Deprecated.
-            import :: c_char, c_size_t, c_unsigned_long_long
+            import :: c_size_t, c_unsigned_long_long
             implicit none
-            character(kind=c_char), intent(inout)     :: src
+            type(*),                intent(inout)     :: src
             integer(kind=c_size_t), intent(in), value :: src_size
             integer(kind=c_unsigned_long_long)        :: zstd_get_frame_content_size
         end function zstd_get_frame_content_size
