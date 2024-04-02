@@ -114,12 +114,12 @@
 | `ZSTD_flushStream`                         | `zstd_flush_stream`               | deprecated                 |
 | `ZSTD_frameHeaderSize`                     |                                   |                            |
 | `ZSTD_freeCCtxParams`                      |                                   |                            |
-| `ZSTD_freeCCtx`                            | `zstd_free_c_ctx`                 |                            |
+| `ZSTD_freeCCtx`                            | `zstd_free_c_ctx`                 | wrapper                    |
 | `ZSTD_freeCDict`                           |                                   |                            |
-| `ZSTD_freeCStream`                         | `zstd_free_c_stream`              |                            |
-| `ZSTD_freeDCtx`                            | `zstd_free_d_ctx`                 |                            |
+| `ZSTD_freeCStream`                         | `zstd_free_c_stream`              | wrapper                    |
+| `ZSTD_freeDCtx`                            | `zstd_free_d_ctx`                 | wrapper                    |
 | `ZSTD_freeDDict`                           |                                   |                            |
-| `ZSTD_freeDStream`                         | `zstd_free_d_stream`              |                            |
+| `ZSTD_freeDStream`                         | `zstd_free_d_stream`              | wrapper                    |
 | `ZSTD_freeThreadPool`                      |                                   |                            |
 | `ZSTD_generateSequences`                   |                                   | deprecated                 |
 | `ZSTD_getBlockSize`                        |                                   | deprecated                 |

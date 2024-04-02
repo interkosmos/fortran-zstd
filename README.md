@@ -77,7 +77,8 @@ If the library is installed to `/opt`, then compile, link, and run the example
 program with:
 
 ```
-$ gfortran -I/opt/include/libfortran-zstd -o example example.f90 /opt/lib/libfortran-zstd.a -lz
+$ gfortran -I/opt/include/libfortran-zstd -o example example.f90 \
+  /opt/lib/libfortran-zstd.a -lzstd
 $ ./example
 ```
 
