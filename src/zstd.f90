@@ -8,8 +8,8 @@ module zstd
     implicit none (type, external)
     private
 
-    integer, parameter :: c_unsigned_int       = c_int
-    integer, parameter :: c_unsigned_long_long = c_long_long
+    integer, parameter, public :: c_unsigned_int       = c_int
+    integer, parameter, public :: c_unsigned_long_long = c_long_long
 
     integer(kind=c_int),    parameter, public :: ZSTD_BLOCKSIZELOG_MAX = 17
     integer(kind=c_size_t), parameter, public :: ZSTD_BLOCKSIZE_MAX    = shiftl(1, ZSTD_BLOCKSIZELOG_MAX)
