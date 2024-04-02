@@ -3,7 +3,7 @@
 ! Author:  Philipp Engel
 ! Licence: ISC
 module zstd
-    !! Fortran 2018 interface bindings to zstandard (zstd).
+    !! Fortran 2018 interface bindings to Zstandard (zstd).
     use, intrinsic :: iso_c_binding
     implicit none (type, external)
     private

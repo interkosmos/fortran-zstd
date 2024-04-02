@@ -1,7 +1,7 @@
 # fortran-zstd
 
 A collection of Fortran 2018 interface bindings to selected
-[zstandard](http://www.zstd.net/) functions (zstd ⩾ 1.5.5). In comparison to
+[Zstandard](http://www.zstd.net/) functions (zstd ⩾ 1.5.5). In comparison to
 the original C API, the Fortran interfaces, types, and arguments have been
 converted to snake case. See [COVERAGE](COVERAGE.md) for an overview of bound
 procedures.
@@ -93,9 +93,9 @@ fortran-zstd = { git = "https://github.com/interkosmos/fortran-zstd.git" }
 
 ## References
 
-* [zstd manual](http://facebook.github.io/zstd/zstd_manual.html)
-* [zstd repository](https://github.com/facebook/zstd)
-* [zstd website](http://www.zstd.net/)
+* [Zstandard manual](http://facebook.github.io/zstd/zstd_manual.html)
+* [Zstandard repository](https://github.com/facebook/zstd)
+* [ZStandard website](http://www.zstd.net/)
 
 ## Licence
 
