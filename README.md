@@ -1,15 +1,35 @@
 # fortran-zstd
 
 A collection of Fortran 2018 interface bindings to selected
-[Zstandard](http://www.zstd.net/) functions (zstd ⩾ 1.5.5). In comparison to
-the original C API, the Fortran interfaces, types, and arguments have been
-converted to snake case. See [COVERAGE](COVERAGE.md) for an overview of bound
-procedures.
+[Zstandard](http://www.zstd.net/) functions (zstd ≥ 1.5.5). In comparison to the
+original C API, the Fortran interfaces, types, and arguments have been converted
+to snake case. See [COVERAGE](COVERAGE.md) for an overview of bound procedures.
 
 ## Build Instructions
 
-The zstd library has to be installed with development headers. Build and
-install the Fortran library using the provided Makefile:
+The zstd library has to be installed with development headers. On FreeBSD, run:
+
+```
+# pkg install archivers/zstd
+```
+
+On Linux, instead:
+
+```
+# apt-get install libzstd1 libzstd-dev
+```
+
+Or, to build and install the zstd library from source:
+
+```
+$ cd /tmp/
+$ git clone --depth 1 https://github.com/facebook/zstd
+$ cd zstd/build/cmake/
+$ cmake --build . --config Release
+$ sudo cmake --install . --prefix /usr/local
+```
+
+Build and install the Fortran library using the provided Makefile:
 
 ```
 $ make

@@ -208,9 +208,9 @@ contains
                 last_chunk = (nbytes < to_read)
 
                 ! Select the flush mode. If the read may not be finished
-                ! (read == toRead) we use ZSTD_E_CONTINUE. If this is the last
-                ! chunk, we use ZSTD_E_END. Zstd optimises the case where the
-                ! first flush mode is ZSTD_E_END, since it knows it is
+                ! (nbytes == to_read) we use ZSTD_E_CONTINUE. If this is the
+                ! last chunk, we use ZSTD_E_END. Zstd optimises the case where
+                ! the first flush mode is ZSTD_E_END, since it knows it is
                 ! compressing the entire source in one pass.
                 if (last_chunk) then
                     mode = ZSTD_E_END
@@ -309,7 +309,7 @@ contains
                 ! Given a valid frame, zstd won't consume the last byte of the frame
                 ! until it has flushed all of the decompressed data of the frame.
                 ! Therefore, instead of checking if the return code is 0, we can
-                ! decompress just check if input.pos < input.size.
+                ! decompress just check if input%pos < input%size.
                 do while (input%pos < input%size)
                     output = zstd_out_buffer_type(c_loc(buf_out), buf_out_sz, 0)
 
