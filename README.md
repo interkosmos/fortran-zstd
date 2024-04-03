@@ -50,14 +50,15 @@ program main
     character(len=:), allocatable :: dst1, dst2, src
     integer(kind=c_size_t)        :: dst_len, src_len, stat
 
-    src     = repeat('Hello, there! ', 32)
+    src = repeat('Hello, there! ', 32)
+
     src_len = len(src, kind=c_size_t)
     dst_len = zstd_compress_bound(src_len)
 
     allocate (character(len=dst_len) :: dst1)
     allocate (character(len=src_len) :: dst2)
 
-    stat    = zstd_compress(dst1, dst_len, src, src_len, zstd_default_c_level())
+    stat = zstd_compress(dst1, dst_len, src, src_len, zstd_default_c_level())
     dst_len = stat
 
     if (zstd_is_error(stat)) then

@@ -23,6 +23,27 @@ program main
         if (.not. tests(i)) error stop
     end do
 contains
+    integer(kind=c_size_t) function test_read(chunk, pos, to_read, src) result(nbytes)
+        !! Reads chunk from source `src` and returns chunk length.
+        character(len=*),       intent(inout) :: chunk   !! Output chunk.
+        integer(kind=c_size_t), intent(inout) :: pos     !! Current cursor position.
+        integer(kind=c_size_t), intent(in)    :: to_read !! Max. bytes to read.
+        character(len=*),       intent(inout) :: src     !! Source to read from.
+
+        integer :: pos2
+
+        nbytes = 0
+        if (to_read == 0) return
+
+        pos = pos + 1
+        if (pos > len(src)) return
+
+        pos2   = min(pos + to_read, len(src, kind=c_size_t))
+        chunk  = src(pos:pos2)
+        nbytes = abs(pos2 - pos) + 1
+        pos    = pos2
+    end function test_read
+
     logical function test_simple() result(success)
         !! Simple API.
         character(len=:), allocatable :: dst1, dst2, src
@@ -90,8 +111,8 @@ contains
         allocate (character(len=dst_len) :: dst1)
         allocate (character(len=src_len) :: dst2)
 
-        level = zstd_default_c_level()
         c_ctx = zstd_create_c_ctx()
+        level = zstd_default_c_level()
         stat  = zstd_compress_c_ctx(c_ctx, dst1, dst_len, src, src_len, level)
         stat2 = zstd_free_c_ctx(c_ctx)
 
@@ -121,27 +142,6 @@ contains
 
         success = .true.
     end function test_simple_multi
-
-    integer(kind=c_size_t) function test_read(chunk, pos, to_read, src) result(nbytes)
-        !! Reads chunks from source `src` and returns chunk length.
-        character(len=*),       intent(inout) :: chunk   !! Output chunk.
-        integer(kind=c_size_t), intent(inout) :: pos     !! Current cursor position.
-        integer(kind=c_size_t), intent(in)    :: to_read !! Max. bytes to read.
-        character(len=*),       intent(inout) :: src     !! Source to read from.
-
-        integer :: pos2
-
-        nbytes = 0
-        if (to_read == 0) return
-
-        pos = pos + 1
-        if (pos > len(src)) return
-
-        pos2   = min(pos + to_read, len(src, kind=c_size_t))
-        chunk  = src(pos:pos2)
-        nbytes = abs(pos2 - pos) + 1
-        pos    = pos2
-    end function test_read
 
     logical function test_stream() result(success)
         !! Streaming API.
