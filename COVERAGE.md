@@ -4,7 +4,7 @@
 |--------------------------------------------|-----------------------------------|----------------------------|
 | `ZSTD_CCtxParams_getParameter`             |                                   |                            |
 | `ZSTD_CCtxParams_init`                     |                                   |                            |
-| `ZSTD_CCtxParams_init_advanded`            |                                   |                            |
+| `ZSTD_CCtxParams_init_advanced`            |                                   |                            |
 | `ZSTD_CCtxParams_registerSequenceProducer` |                                   |                            |
 | `ZSTD_CCtxParams_reset`                    |                                   |                            |
 | `ZSTD_CCtxParams_setParameter`             |                                   |                            |
@@ -23,8 +23,8 @@
 | `ZSTD_CCtx_setParametersUsingCCtxParams`   |                                   |                            |
 | `ZSTD_CCtx_setParams`                      |                                   |                            |
 | `ZSTD_CCtx_setPledgedSrcSize`              | `zstd_c_ctx_set_pledged_src_size` |                            |
-| `ZSTD_CStreamInSize`                       |                                   |                            |
-| `ZSTD_CStreamOutSize`                      |                                   |                            |
+| `ZSTD_CStreamInSize`                       | `zstd_c_stream_in_size`           |                            |
+| `ZSTD_CStreamOutSize`                      | `zstd_c_stream_out_size`          |                            |
 | `ZSTD_DCtx_getParameter`                   |                                   |                            |
 | `ZSTD_DCtx_loadDictionary`                 |                                   |                            |
 | `ZSTD_DCtx_loadDictionary_advanced`        |                                   |                            |
@@ -67,8 +67,8 @@
 | `ZSTD_createCCtxParams`                    |                                   |                            |
 | `ZSTD_createCCtx_advanced`                 |                                   |                            |
 | `ZSTD_createCDict`                         |                                   |                            |
+| `ZSTD_createCDict_advanced`                |                                   |                            |
 | `ZSTD_createCDict_advanced2`               |                                   | deprecated                 |
-| `ZSTD_createCDict_avanced`                 |                                   |                            |
 | `ZSTD_createCDict_byReference`             |                                   |                            |
 | `ZSTD_createCStream`                       | `zstd_create_c_stream`            |                            |
 | `ZSTD_createCStream_advanced`              |                                   |                            |
@@ -131,15 +131,15 @@
 | `ZSTD_getDictID_fromFrame`                 |                                   |                            |
 | `ZSTD_getErrorName`                        | `zstd_get_error_name`             | wrapper                    |
 | `ZSTD_getFrameContentSize`                 | `zstd_get_frame_content_size`     |                            |
-| `ZSTD_getFrameHeader_advanced`             |                                   |                            |
 | `ZSTD_getFrameHeader`                      |                                   |                            |
+| `ZSTD_getFrameHeader_advanced`             |                                   |                            |
 | `ZSTD_getFrameProgression`                 |                                   |                            |
 | `ZSTD_getParams`                           |                                   |                            |
 | `ZSTD_initCStream`                         | `zstd_init_c_stream`              |                            |
 | `ZSTD_initCStream_advanced`                |                                   | deprecated                 |
 | `ZSTD_initCStream_srcSize`                 |                                   | deprecated                 |
-| `ZSTD_initCStream_usingCDict_advanced`     |                                   | deprecated                 |
 | `ZSTD_initCStream_usingCDict`              |                                   | deprecated                 |
+| `ZSTD_initCStream_usingCDict_advanced`     |                                   | deprecated                 |
 | `ZSTD_initCStream_usingDDict`              |                                   | deprecated                 |
 | `ZSTD_initCStream_usingDict`               |                                   | deprecated                 |
 | `ZSTD_initDStream`                         | `zstd_init_d_stream`              |                            |

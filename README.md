@@ -17,10 +17,10 @@ $ make install PREFIX=/opt
 ```
 
 Link your programs against `/opt/lib/libfortran-zstd.a -lzstd`. Optionally,
-overwrite the default compiler:
+overwrite the default compiler and the compiler flags:
 
 ```
-$ make FC=ifx
+$ make FC=ifx FFLAGS="-O3"
 ```
 
 Or, use the [Fortran Package Manager](https://github.com/fortran-lang/fpm):

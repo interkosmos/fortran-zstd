@@ -4,8 +4,8 @@ license = "ISC"
 author = "Philipp Engel"
 maintainer = "@interkosmos"
 copyright = "Copyright (c) 2024, Philipp Engel"
-description = "Fortran 2018 interface bindings to zstd"
-keywords = [ "zstd" ]
+description = "Fortran 2018 interface bindings to Zstandard (zstd)"
+keywords = [ "compression", "zstandard", "zstd" ]
 
 [build]
 link = "zstd"

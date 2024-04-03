@@ -6,8 +6,8 @@ AR      = ar
 MAKE    = make
 PREFIX  = /usr
 
-DEBUG   = -g -O0 -Wall -fmax-errors=1
-RELEASE = -O2 -march=native
+DEBUG   = -std=f2018 -g -O0 -Wall -fmax-errors=1
+RELEASE = -std=f2018 -O2 -march=native
 
 FFLAGS  = $(RELEASE)
 LDLAGS  = -I$(PREFIX)/include -L$(PREFIX)/lib
@@ -43,11 +43,11 @@ test_shared: $(SHARED) test/test_zstd.f90
 	$(FC) $(FFLAGS) $(LDFLAGS) -o test_zstd_shared test/test_zstd.f90 $(SHARED) $(LDLIBS)
 
 install: $(TARGET)
-	@echo "--- Installing libraries to $(LIBDIR)/ ..."
+	@echo "--- Installing library to $(LIBDIR)/ ..."
 	install -d $(LIBDIR)
 	install -m 644 $(TARGET) $(LIBDIR)/
 	if [ -e $(SHARED) ]; then install -m 644 $(SHARED) $(LIBDIR)/; fi
-	@echo "--- Installing module files to $(INCDIR)/ ..."
+	@echo "--- Installing module to $(INCDIR)/ ..."
 	install -d $(INCDIR)
 	install -m 644 $(MODULE) $(INCDIR)/
 

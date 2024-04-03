@@ -473,6 +473,8 @@ module zstd
     public :: zstd_c_ctx_set_parameter
     public :: zstd_c_ctx_set_pledged_src_size
     public :: zstd_c_param_get_bounds
+    public :: zstd_c_stream_in_size
+    public :: zstd_c_stream_out_size
     public :: zstd_compress
     public :: zstd_compress2
     public :: zstd_compress_bound
