@@ -25,6 +25,8 @@ Or, to build and install the zstd library from source:
 $ cd /tmp/
 $ git clone --depth 1 https://github.com/facebook/zstd
 $ cd zstd/build/cmake/
+$ mkdir build && cd build/
+$ cmake ..
 $ cmake --build . --config Release
 $ sudo cmake --install . --prefix /usr/local
 ```
