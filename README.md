@@ -19,7 +19,7 @@ On Linux, instead:
 # apt-get install libzstd1 libzstd-dev
 ```
 
-Or, to build and install the zstd library from source:
+Or, to build the zstd library from source, and to install to `/usr/local`, run:
 
 ```
 $ cd /tmp/
