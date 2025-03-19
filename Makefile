@@ -4,17 +4,18 @@
 FC      = gfortran
 AR      = ar
 MAKE    = make
-PREFIX  = /usr
+PREFIX  = /usr/local
 
-DEBUG   = -std=f2018 -g -O0 -Wall -fmax-errors=1
-RELEASE = -std=f2018 -O2 -march=native
+DEBUG   = -g -O0 -Wall -fmax-errors=1 -std=f2018
+RELEASE = -O2
 
 FFLAGS  = $(RELEASE)
-LDLAGS  = -I$(PREFIX)/include -L$(PREFIX)/lib
+LDFLAGS = -I$(PREFIX)/include -L$(PREFIX)/lib
 LDLIBS  = -lzstd
 ARFLAGS = rcs
 INCDIR  = $(PREFIX)/include/libfortran-zstd
 LIBDIR  = $(PREFIX)/lib
+SRC     = src/zstd.F90
 MODULE  = zstd.mod
 TARGET  = ./libfortran-zstd.a
 SHARED  = ./libfortran-zstd.so
@@ -29,12 +30,12 @@ debug:
 	$(MAKE) FFLAGS="$(DEBUG)"
 	$(MAKE) test FFLAGS="$(DEBUG)"
 
-$(TARGET): src/zstd.f90
-	$(FC) $(FFLAGS) -c src/zstd.f90
+$(TARGET): $(SRC)
+	$(FC) $(FFLAGS) -c $(SRC)
 	$(AR) $(ARFLAGS) $(TARGET) zstd.o
 
-$(SHARED): src/zstd.f90
-	$(FC) $(FFLAGS) -fPIC -shared -o $(SHARED) src/zstd.f90 $(LDLIBS)
+$(SHARED): $(SRC)
+	$(FC) $(FFLAGS) -fPIC -shared -o $(SHARED) $(SRC) $(LDLIBS)
 
 test: $(TARGET) test/test_zstd.f90
 	$(FC) $(FFLAGS) $(LDFLAGS) -o test_zstd test/test_zstd.f90 $(TARGET) $(LDLIBS)

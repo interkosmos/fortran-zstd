@@ -1,4 +1,4 @@
-! zstd.f90
+! zstd.F90
 !
 ! Author:  Philipp Engel
 ! Licence: ISC
@@ -8,8 +8,17 @@ module zstd
     implicit none (type, external)
     private
 
-    integer, parameter, public :: c_unsigned_int       = c_int
+#if defined (__flang__)
+
+    public :: c_unsigned
+    public :: c_unsigned_long_long
+
+#else
+
+    integer, parameter, public :: c_unsigned           = c_int
     integer, parameter, public :: c_unsigned_long_long = c_long_long
+
+#endif
 
     integer(kind=c_int),    parameter, public :: ZSTD_BLOCKSIZELOG_MAX = 17
     integer(kind=c_size_t), parameter, public :: ZSTD_BLOCKSIZE_MAX    = shiftl(1, ZSTD_BLOCKSIZELOG_MAX)
@@ -434,10 +443,10 @@ module zstd
 
         ! unsigned ZSTD_isError(size_t code)
         function zstd_is_error_(code) bind(c, name='ZSTD_isError')
-            import :: c_size_t, c_unsigned_int
+            import :: c_size_t, c_unsigned
             implicit none
             integer(kind=c_size_t), intent(in), value :: code
-            integer(kind=c_unsigned_int)              :: zstd_is_error_
+            integer(kind=c_unsigned)              :: zstd_is_error_
         end function zstd_is_error_
 
         ! int ZSTD_maxCLevel(void)
@@ -456,9 +465,9 @@ module zstd
 
         ! unsigned ZSTD_versionNumber(void)
         function zstd_version_number() bind(c, name='ZSTD_versionNumber')
-            import :: c_unsigned_int
+            import :: c_unsigned
             implicit none
-            integer(kind=c_unsigned_int) :: zstd_version_number
+            integer(kind=c_unsigned) :: zstd_version_number
         end function zstd_version_number
 
         ! const char *ZSTD_versionString(void)
